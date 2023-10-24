@@ -7,15 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.ingeneo_technical_test.enumerations.ClientState;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 /**
  * Entity from table "CLIENT"
  * @author Johan Casagua
  */
 @Entity
-@Table(name = "CLIENT")
-@Data @Builder
+@Table(name = "client")
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Client {
 
 	@Id
@@ -34,4 +38,5 @@ public class Client {
 	
 	private String address;
 	
+	private ClientState state;
 }

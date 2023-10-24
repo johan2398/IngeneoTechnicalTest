@@ -3,25 +3,25 @@ package com.example.ingeneo_technical_test.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Builder;
-import lombok.Data;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity from table "STORE"
  * @author Johan Casagua
  */
 @Entity
-@Table(name = "STORE")
-@Data @Builder
-public class Store {
+@Table(name = "store")
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor 
+public class Store{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,4 @@ public class Store {
 	@Column(name = "vehicle_plate")
     private String vehiclePlate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_warehouse")
-	private Warehouse warehouse;
 }

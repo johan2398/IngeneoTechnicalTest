@@ -9,16 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.ingeneo_technical_test.enumerations.ClientState;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Entity from table "DISCOUNT"
  * @author Johan Casagua
  */
 @Entity
-@Table(name = "DISCOUNT")
-@Data @Builder
+@Table(name = "discount")
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Discount {
 	
 	@Id
