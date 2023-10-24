@@ -45,11 +45,11 @@ public class Warehouse {
 	/**This field will contain the type of warehouse (PORT, STORE, etc.)*/
     private WarehouseType type; 
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_port")
 	private Port port;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_store")
 	private Store store;
 }

@@ -15,4 +15,8 @@ public interface ShipService {
 	public List<ShipDTO> listAllShips();
 	
 	public ShipDTO createShip(ShipDTO ShipDTO);
+	
+	public List<ShipDTO> filterByGuideNumber(String guideNumber); 
+	
+	public List<ShipDTO> filterByDocIdClient(String docIdClient);
 }

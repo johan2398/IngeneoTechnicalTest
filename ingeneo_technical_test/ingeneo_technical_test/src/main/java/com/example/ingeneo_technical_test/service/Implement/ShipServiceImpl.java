@@ -47,4 +47,20 @@ public class ShipServiceImpl implements ShipService{
 	    return ShipDTOConverter.convertToDTO(savedShip);
 	}
 
+	@Override
+	public List<ShipDTO> filterByGuideNumber(String guideNumber) {
+		List<Ship> ships = shipRepository.findByNumberGuideContainingIgnoreCase(guideNumber);
+		return ships.stream()
+				.map(ShipDTOConverter::convertToDTO)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ShipDTO> filterByDocIdClient(String docIdClient) {
+		List<Ship> ships = shipRepository.findByClientDocIdContainingIgnoreCase(docIdClient);
+		return ships.stream()
+				.map(ShipDTOConverter::convertToDTO)
+				.collect(Collectors.toList());
+	}
+
 }

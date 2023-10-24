@@ -14,13 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.proxy.HibernateProxy;
-import com.fasterxml.jackson.datatype.hibernate5.HibernateProxySerializer;
-
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

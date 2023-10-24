@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ingeneo_technical_test.entity.dto.ShipDTO;
@@ -37,6 +38,26 @@ public class ShipController {
 		}
 		return ResponseEntity.ok(ships);
 	}
+	
+	@GetMapping("/filters")
+    public ResponseEntity<List<ShipDTO>> filterShipsByGuideNumber(@RequestParam String guideNumber) {
+        List<ShipDTO> filteredShips = shipService.filterByGuideNumber(guideNumber);
+
+        if (filteredShips.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(filteredShips);
+    }
+	
+	@GetMapping("/filters/doc_id_clients")
+    public ResponseEntity<List<ShipDTO>> filterByDocIdClient(@RequestParam String docIdClient) {
+        List<ShipDTO> filteredShips = shipService.filterByDocIdClient(docIdClient);
+
+        if (filteredShips.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(filteredShips);
+    }
 	
 	@PostMapping
     public ResponseEntity<ShipDTO> createWarehouse(@RequestBody ShipDTO shipDTO) {

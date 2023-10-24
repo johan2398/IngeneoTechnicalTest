@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.example.ingeneo_technical_test.enumerations.ClientState;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

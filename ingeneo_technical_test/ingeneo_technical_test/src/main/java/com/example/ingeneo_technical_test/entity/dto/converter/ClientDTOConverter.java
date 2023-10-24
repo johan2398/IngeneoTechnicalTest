@@ -24,6 +24,7 @@ public class ClientDTOConverter {
 		clientDTO.setEmail(client.getEmail());
 		clientDTO.setAddress(client.getAddress());
 		clientDTO.setState(client.getState());
+		clientDTO.setIdentification(client.getIdentification());
 		return clientDTO;
 	}
 	
@@ -36,6 +37,7 @@ public class ClientDTOConverter {
 		client.setEmail(clientDTO.getEmail());
 		client.setAddress(clientDTO.getAddress());
 		client.setState(clientDTO.getState());
+		client.setIdentification(clientDTO.getIdentification());
 		return client;
 	}
 }

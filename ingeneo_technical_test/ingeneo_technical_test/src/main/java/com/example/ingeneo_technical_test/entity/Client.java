@@ -39,4 +39,6 @@ public class Client {
 	private String address;
 	
 	private ClientState state;
+	
+	private String identification;
 }
