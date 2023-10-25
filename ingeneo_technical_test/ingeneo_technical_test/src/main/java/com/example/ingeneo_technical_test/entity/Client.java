@@ -41,4 +41,6 @@ public class Client {
 	private ClientState state;
 	
 	private String identification;
+	
+	private String username;
 }

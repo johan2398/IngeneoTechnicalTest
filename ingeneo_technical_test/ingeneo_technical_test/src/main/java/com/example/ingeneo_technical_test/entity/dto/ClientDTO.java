@@ -26,4 +26,5 @@ public class ClientDTO {
 	private String address;
 	private ClientState state;
 	private String identification;
+	private String username;
 }

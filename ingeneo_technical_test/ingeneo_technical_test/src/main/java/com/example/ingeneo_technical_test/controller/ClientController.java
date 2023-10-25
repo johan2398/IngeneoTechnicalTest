@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ingeneo_technical_test.entity.dto.ClientDTO;
+import com.example.ingeneo_technical_test.entity.dto.ShipDTO;
 import com.example.ingeneo_technical_test.service.ClientService;
 
 /**
@@ -35,6 +37,15 @@ public class ClientController {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.ok(clients);
+	}
+	@GetMapping("/usernames")
+	public ResponseEntity<ClientDTO> findClientByUsername(@RequestParam String userName) {
+        ClientDTO clientFound = clientService.findClientByUsername(userName);
+
+        if (clientFound == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(clientFound);
 	}
 	
 	@PostMapping

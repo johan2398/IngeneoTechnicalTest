@@ -42,4 +42,14 @@ public class ClientServiceImpl implements ClientService{
 	    return ClientDTOConverter.convertToDTO(savedClient);
 	}
 
+	@Override
+	public ClientDTO findClientByUsername(String userName) {
+		var clientUnique = clientRepository.findByUsername(userName);
+		if(clientUnique != null) {
+			return ClientDTOConverter.convertToDTO(clientUnique);
+		} else {
+			return null;
+		}
+	}
+
 }

@@ -25,6 +25,7 @@ public class ClientDTOConverter {
 		clientDTO.setAddress(client.getAddress());
 		clientDTO.setState(client.getState());
 		clientDTO.setIdentification(client.getIdentification());
+		clientDTO.setUsername(client.getUsername());
 		return clientDTO;
 	}
 	
@@ -38,6 +39,7 @@ public class ClientDTOConverter {
 		client.setAddress(clientDTO.getAddress());
 		client.setState(clientDTO.getState());
 		client.setIdentification(clientDTO.getIdentification());
+		client.setUsername(clientDTO.getUsername());
 		return client;
 	}
 }
