@@ -21,10 +21,8 @@ public class ClientDTO {
 	private Long id;
 	private String name;
 	private String lastName;
-	private String password;
 	private String email;
 	private String address;
 	private ClientState state;
 	private String identification;
-	private String username;
 }

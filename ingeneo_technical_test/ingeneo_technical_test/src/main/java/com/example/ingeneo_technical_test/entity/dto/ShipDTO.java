@@ -9,6 +9,7 @@ import com.example.ingeneo_technical_test.entity.Client;
 import com.example.ingeneo_technical_test.entity.Discount;
 import com.example.ingeneo_technical_test.entity.Product;
 import com.example.ingeneo_technical_test.entity.Warehouse;
+import com.example.ingeneo_technical_test.enumerations.ShipState;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -32,4 +33,5 @@ public class ShipDTO {
 	private Client client;
 	private Warehouse warehouse;
 	private Discount discount;
+	private ShipState state;
 }

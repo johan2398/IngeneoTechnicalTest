@@ -17,15 +17,13 @@ import com.example.ingeneo_technical_test.entity.Ship;
  */
 public interface ShipRepository extends JpaRepository<Ship, Long> {
 
-	/*Query ships with a partial or complete guide number
-	 * @param partialGuideNumber
+	/*Query ships guide number or document identifier
+	 * @param search
 	 * @return
 	 */
-	@Query("SELECT s FROM Ship s WHERE LOWER(s.guideNumber) LIKE LOWER(CONCAT('%', :partialGuideNumber, '%'))")
-    List<Ship> findByNumberGuideContainingIgnoreCase(@Param("partialGuideNumber") String partialGuideNumber);
-	
-	@Query("SELECT s FROM Ship s INNER JOIN s.client c WHERE LOWER(c.identification) LIKE LOWER(CONCAT('%', :partialDocId, '%'))")
-	List<Ship> findByClientDocIdContainingIgnoreCase(@Param("partialDocId") String partialDocId);
+	@Query("SELECT s FROM Ship s INNER JOIN s.client c WHERE LOWER(c.identification) = LOWER(:search) OR LOWER(s.guideNumber) = LOWER(:search)")
+	List<Ship> findByClientDocIdOrGuideNumberContainingIgnoreCase(@Param("search") String search);
 
+	
 	
 }

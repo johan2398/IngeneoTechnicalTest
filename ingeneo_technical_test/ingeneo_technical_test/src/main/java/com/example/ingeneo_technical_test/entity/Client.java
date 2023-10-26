@@ -32,8 +32,6 @@ public class Client {
 	@Column(name="last_name")
 	private String lastName;
 	
-	private String password;
-	
 	private String email;
 	
 	private String address;
@@ -42,5 +40,4 @@ public class Client {
 	
 	private String identification;
 	
-	private String username;
 }

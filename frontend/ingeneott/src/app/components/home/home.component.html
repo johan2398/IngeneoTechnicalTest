@@ -1,1 +1,291 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Ingeneo Technical Test</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="selectSection('createShipment')">Create Shipment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="selectSection('trackShipment')">Track Shipment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="selectSection('createProduct')">Create Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="selectSection('createClient')">Create Client</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div *ngIf="selectedSection === 'createShipment'">
+        <div *ngIf="selectedSection === 'createShipment'">
+            <div class="container mt-5">
+                <h3 class="mb-3">Create Shipment</h3>
+                <form [formGroup]="searchForm" (ngSubmit)="onSubmitShipment()">
+                    <h5 class="mb-3">Product details</h5>
+                    <!-- Name Input -->
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="clientName"
+                            formControlName="productName" required>
+                    </div>
+                    <!-- Quantity Input -->
+                    <div class="mb-3">
+                        <label for="productQuantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="productQuantity" min="1" value="1"
+                             formControlName="productQuantity" required>
+                    </div>
+                    <!-- Type Dropdown -->
+                    <div class="mb-3">
+                        <label for="productType" class="form-label">Type</label>
+                        <select class="form-control" id="productType" 
+                            formControlName="productType" required>
+                            <option value="VEHICLES">VEHICLES</option>
+                            <option value="TECHNOLOGY">TECHNOLOGY</option>
+                            <option value="HOME_AND_FURNITURE">HOME AND FURNITURE</option>
+                            <option value="FASHION">FASHION</option>
+                            <option value="HEALTH_AND_MEDICAL_EQUIPMENT">HEALTH AND MEDICAL EQUIPMENT</option>
+                            <!-- Agrega más opciones según tus necesidades -->
+                        </select>
+                    </div>
+                    <h5 class="mb-3">Warehouse details</h5>
+                    <!-- Type Dropdown -->
+                    <div class="mb-3">
+                        <label for="productType" class="form-label">Type</label>
+                        <select class="form-control" id="productType" 
+                            formControlName="warehouseType" required>
+                            <option value="STORE" checked>STORE - LAND WAY</option>
+                            <option value="PORT">PORT - SEA WAY</option>
+                            <!-- Agrega más opciones según tus necesidades -->
+                        </select>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Save Shipment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedSection === 'trackShipment'">
+        <div class="container mt-5">
+            <div *ngIf="selectedSection === 'trackShipment'">
+                <h5 class="card-title">Track Shipment</h5>
+                <!-- Track Shipment Form -->
+                <form [formGroup]="searchForm" (ngSubmit)="onSubmitTrack()">
+                    <div class="mb-3">
+                        <label id="trackingInputLabel" class="form-label">Enter guide number or document
+                            identifier</label>
+                        <input type="text" class="form-control" id="trackingInput" [(ngModel)]="search"
+                            formControlName="search" placeholder="Enter tracking number or document identifier"
+                            required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Track Shipment</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla para mostrar productos existentes -->
+        <div *ngIf="selectedSection === 'trackShipment'" class="mt-4">
+            <h5>Existing Products</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Type</th>
+                        <th>Quantity</th>
+                        <th>Registry Date</th>
+                        <th>Delivery Date</th>
+                        <th>Warehouse Name</th>
+                        <th>Warehouse Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ship of ships">
+                        <td>{{ ship.product.name }}</td>
+                        <td>{{ ship.product.type }}</td>
+                        <td>{{ ship.product.quantity }}</td>
+                        <td>{{ ship.registryDate }}</td>
+                        <td>{{ ship.deliveryDate }}</td>
+                        <td>{{ ship.warehouse.name }}</td>
+                        <td>{{ ship.warehouse.type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guide Number</th>
+                        <th>Client</th>
+                        <th>Document identifier client </th>
+                        <th>Shipping state</th>
+                        <th>Shipping Price</th>
+                        <th>Vehicle Plate / Fleet Number Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ship of ships">
+                        <td>{{ ship.guideNumber }}</td>
+                        <td>{{ ship.client.name + " " + (ship.client.lastName ? ship.client.lastName:"") }}</td>
+                        <td>{{ ship.client.identification }}</td>
+                        <td>{{ ship.state }}</td>
+                        <td>{{ ship.price }}</td>
+                        <td>{{ ship.warehouse.store ? ship.warehouse.store.vehiclePlate : ship.warehouse.port }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="selectedSection === 'createProduct'">
+        <div class="container mt-5">
+            <div *ngIf="selectedSection === 'createProduct'">
+                <h5 class="mb-3">Create Product</h5>
+                <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
+                    <!-- Name Input -->
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="productName" [(ngModel)]="productDTO.name"
+                            formControlName="name" required>
+                    </div>
+                    <!-- Quantity Input -->
+                    <div class="mb-3">
+                        <label for="productQuantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="productQuantity" min="1" value="1"
+                            [(ngModel)]="productDTO.quantity" formControlName="quantity" required>
+                    </div>
+                    <!-- Description Input -->
+                    <div class="mb-3">
+                        <label for="productDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="productDescription" [(ngModel)]="productDTO.description"
+                            formControlName="description" required></textarea>
+                    </div>
+                    <!-- Price Input -->
+                    <div class="mb-3">
+                        <label for="productPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="productPrice" [(ngModel)]="productDTO.price"
+                            formControlName="price" min="1" value="1" required>
+                    </div>
+                    <!-- Type Dropdown -->
+                    <div class="mb-3">
+                        <label for="productType" class="form-label">Type</label>
+                        <select class="form-control" id="productType" [(ngModel)]="productDTO.type"
+                            formControlName="type" required>
+                            <option value="VEHICLES">VEHICLES</option>
+                            <option value="TECHNOLOGY">TECHNOLOGY</option>
+                            <option value="HOME_AND_FURNITURE">HOME AND FURNITURE</option>
+                            <option value="FASHION">FASHION</option>
+                            <option value="HEALTH_AND_MEDICAL_EQUIPMENT">HEALTH AND MEDICAL EQUIPMENT</option>
+                            <!-- Agrega más opciones según tus necesidades -->
+                        </select>
+                    </div>
+                    <!-- Creation Date Input (with Calendar) -->
+                    <div class="mb-3">
+                        <label for="creationDate" class="form-label">Creation Date</label>
+                        <input type="date" class="form-control" id="creationDate" formControlName="creationDate">
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </form>
+            </div>
+
+            <!-- Tabla para mostrar productos existentes -->
+            <div *ngIf="selectedSection === 'createProduct'" class="mt-4">
+                <h5>Existing Products</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Creation Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.type }}</td>
+                            <td>{{ product.creationDate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="selectedSection === 'createClient'">
+        <div *ngIf="selectedSection === 'createClient'">
+            <div class="container mt-5">
+                <h5 class="mb-3">Create Client</h5>
+                <form [formGroup]="clientForm" (ngSubmit)="onSubmitClient()">
+                    <!-- Name Input -->
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="clientName" [(ngModel)]="clientDTO.name"
+                            formControlName="name" required>
+                    </div>
+                    <!-- Last Name Input -->
+                    <div class="mb-3">
+                        <label for="clientLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="clientLastName" [(ngModel)]="clientDTO.lastName"
+                            formControlName="last_name" required>
+                    </div>
+                    <!-- Identification Input -->
+                    <div class="mb-3">
+                        <label for="clientId" class="form-label">Identification</label>
+                        <input type="text" class="form-control" id="clientId" [(ngModel)]="clientDTO.identification"
+                            formControlName="identification" required>
+                    </div>
+                    <!-- Email Input -->
+                    <div class="mb-3">
+                        <label for="clientEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="clientEmail" [(ngModel)]="clientDTO.email"
+                            formControlName="email" required>
+                    </div>
+                    <!-- Address Input -->
+                    <div class="mb-3">
+                        <label for="clientAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="clientAddress" [(ngModel)]="clientDTO.address"
+                            formControlName="address" required>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Save Client</button>
+                </form>
+            </div>
+        </div>
+        <!-- Tabla para mostrar clientes existentes -->
+        <h5>Existing Clients</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>State</th>
+                    <th>Identification</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.last_name }}</td>
+                    <td>{{ client.state }}</td>
+                    <td>{{ client.identification }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.address }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

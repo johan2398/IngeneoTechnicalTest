@@ -38,16 +38,6 @@ public class ClientController {
 		}
 		return ResponseEntity.ok(clients);
 	}
-	@GetMapping("/usernames")
-	public ResponseEntity<ClientDTO> findClientByUsername(@RequestParam String userName) {
-        ClientDTO clientFound = clientService.findClientByUsername(userName);
-
-        if (clientFound == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(clientFound);
-	}
-	
 	@PostMapping
     public ResponseEntity<ClientDTO> createClient(@RequestBody ClientDTO clientDTO) {
         if (clientDTO == null) {

@@ -20,12 +20,10 @@ public class ClientDTOConverter {
 		clientDTO.setId(client.getId());
 		clientDTO.setName(client.getName());
 		clientDTO.setLastName(client.getLastName());
-		clientDTO.setPassword(client.getPassword());
 		clientDTO.setEmail(client.getEmail());
 		clientDTO.setAddress(client.getAddress());
 		clientDTO.setState(client.getState());
 		clientDTO.setIdentification(client.getIdentification());
-		clientDTO.setUsername(client.getUsername());
 		return clientDTO;
 	}
 	
@@ -34,12 +32,10 @@ public class ClientDTOConverter {
 		client.setId(clientDTO.getId());
 		client.setName(clientDTO.getName());
 		client.setLastName(clientDTO.getLastName());
-		client.setPassword(clientDTO.getPassword());
 		client.setEmail(clientDTO.getEmail());
 		client.setAddress(clientDTO.getAddress());
 		client.setState(clientDTO.getState());
 		client.setIdentification(clientDTO.getIdentification());
-		client.setUsername(clientDTO.getUsername());
 		return client;
 	}
 }

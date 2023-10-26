@@ -16,6 +16,4 @@ public interface ClientService {
 	
 	public ClientDTO createClient(ClientDTO client);
 	
-	public ClientDTO findClientByUsername(String userName);
-	
 }

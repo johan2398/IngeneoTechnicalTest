@@ -5,6 +5,7 @@ package com.example.ingeneo_technical_test.entity.dto;
 
 import java.util.Date;
 
+import com.example.ingeneo_technical_test.enumerations.ProductType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +24,6 @@ public class ProductDTO {
 	private int quantity;
 	private String description;
 	private float price;
-	private Long type;
+	private ProductType type;
 	private Date creationDate;
 }

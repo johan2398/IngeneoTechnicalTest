@@ -40,27 +40,17 @@ public class ShipController {
 	}
 	
 	@GetMapping("/filters")
-    public ResponseEntity<List<ShipDTO>> filterShipsByGuideNumber(@RequestParam String guideNumber) {
-        List<ShipDTO> filteredShips = shipService.filterByGuideNumber(guideNumber);
+	public ResponseEntity<List<ShipDTO>> filterByDocIdClientOrGuideNumber(@RequestParam String search) {
+        List<ShipDTO> filteredShips = shipService.filterByDocIdClientOrGuideNumber(search);
 
         if (filteredShips.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(filteredShips);
-    }
-	
-	@GetMapping("/filters/doc_id_clients")
-    public ResponseEntity<List<ShipDTO>> filterByDocIdClient(@RequestParam String docIdClient) {
-        List<ShipDTO> filteredShips = shipService.filterByDocIdClient(docIdClient);
-
-        if (filteredShips.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(filteredShips);
     }
 	
 	@PostMapping
-    public ResponseEntity<ShipDTO> createWarehouse(@RequestBody ShipDTO shipDTO) {
+    public ResponseEntity<ShipDTO> createShipment(@RequestBody ShipDTO shipDTO) {
         if (shipDTO == null) {
             return ResponseEntity.badRequest().build();
         }

@@ -6,6 +6,8 @@ package com.example.ingeneo_technical_test.service.Implement;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,16 +50,8 @@ public class ShipServiceImpl implements ShipService{
 	}
 
 	@Override
-	public List<ShipDTO> filterByGuideNumber(String guideNumber) {
-		List<Ship> ships = shipRepository.findByNumberGuideContainingIgnoreCase(guideNumber);
-		return ships.stream()
-				.map(ShipDTOConverter::convertToDTO)
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ShipDTO> filterByDocIdClient(String docIdClient) {
-		List<Ship> ships = shipRepository.findByClientDocIdContainingIgnoreCase(docIdClient);
+	public List<ShipDTO> filterByDocIdClientOrGuideNumber(String search) {
+		List<Ship> ships = shipRepository.findByClientDocIdOrGuideNumberContainingIgnoreCase(search);
 		return ships.stream()
 				.map(ShipDTOConverter::convertToDTO)
 				.collect(Collectors.toList());

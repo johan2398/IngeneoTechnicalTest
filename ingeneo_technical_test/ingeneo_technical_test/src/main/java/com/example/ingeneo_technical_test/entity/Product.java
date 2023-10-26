@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.ingeneo_technical_test.enumerations.ProductType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +38,7 @@ public class Product {
 	
 	private float price;
 	
-	private Long type;
+	private ProductType type;
 	
 	@Column(name="creation_date")
 	private Date creationDate;
