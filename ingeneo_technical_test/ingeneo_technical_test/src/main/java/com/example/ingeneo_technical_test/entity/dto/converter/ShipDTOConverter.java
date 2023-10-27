@@ -27,6 +27,7 @@ public class ShipDTOConverter {
 	    shipDTO.setWarehouse(ship.getWarehouse());
 	    shipDTO.setDiscount(ship.getDiscount());
 	    shipDTO.setState(ship.getState());
+	    shipDTO.setShippingPriceWithDiscount(ship.getShippingPriceWithDiscount());
 	    return shipDTO;
 	}
 
@@ -42,6 +43,7 @@ public class ShipDTOConverter {
 	    ship.setWarehouse(shipDTO.getWarehouse());
 	    ship.setDiscount(shipDTO.getDiscount());
 	    ship.setState(shipDTO.getState());
+	    ship.setShippingPriceWithDiscount(shipDTO.getShippingPriceWithDiscount());
 	    return ship;
 	}
 

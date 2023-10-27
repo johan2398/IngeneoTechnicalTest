@@ -63,6 +63,19 @@
                             <!-- Agrega más opciones según tus necesidades -->
                         </select>
                     </div>
+                    <h5 class="mb-3">Client details</h5>
+                    <!-- Name Input -->
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Client Name</label>
+                        <input type="text" class="form-control" id="clientName"
+                            formControlName="clientName" required>
+                    </div>
+                    <!-- Document Input -->
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Doument identifier</label>
+                        <input type="text" class="form-control" id="clientName"
+                            formControlName="docId" required>
+                    </div>
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary">Save Shipment</button>
                 </form>
@@ -76,8 +89,6 @@
                 <!-- Track Shipment Form -->
                 <form [formGroup]="searchForm" (ngSubmit)="onSubmitTrack()">
                     <div class="mb-3">
-                        <label id="trackingInputLabel" class="form-label">Enter guide number or document
-                            identifier</label>
                         <input type="text" class="form-control" id="trackingInput" [(ngModel)]="search"
                             formControlName="search" placeholder="Enter tracking number or document identifier"
                             required>
@@ -95,24 +106,24 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Guide Number</th>
                         <th>Product Name</th>
                         <th>Product Type</th>
                         <th>Quantity</th>
                         <th>Registry Date</th>
                         <th>Delivery Date</th>
-                        <th>Warehouse Name</th>
-                        <th>Warehouse Type</th>
+                        <th>Warehouse</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let ship of ships">
+                        <td>{{ ship.guideNumber }}</td>
                         <td>{{ ship.product.name }}</td>
                         <td>{{ ship.product.type }}</td>
                         <td>{{ ship.product.quantity }}</td>
                         <td>{{ ship.registryDate }}</td>
                         <td>{{ ship.deliveryDate }}</td>
                         <td>{{ ship.warehouse.name }}</td>
-                        <td>{{ ship.warehouse.type }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -124,6 +135,7 @@
                         <th>Document identifier client </th>
                         <th>Shipping state</th>
                         <th>Shipping Price</th>
+                        <th>Shipping Price With Discount</th>
                         <th>Vehicle Plate / Fleet Number Price</th>
                     </tr>
                 </thead>
@@ -133,8 +145,9 @@
                         <td>{{ ship.client.name + " " + (ship.client.lastName ? ship.client.lastName:"") }}</td>
                         <td>{{ ship.client.identification }}</td>
                         <td>{{ ship.state }}</td>
-                        <td>{{ ship.price }}</td>
-                        <td>{{ ship.warehouse.store ? ship.warehouse.store.vehiclePlate : ship.warehouse.port }}</td>
+                        <td>{{ ship.shippingPrice }}</td>
+                        <td>{{ ship.shippingPriceWithDiscount }}</td>
+                        <td>{{ ship.warehouse.store ? ship.warehouse.store.vehiclePlate : ship.warehouse.port.fleetNumber }}</td>
                     </tr>
                 </tbody>
             </table>

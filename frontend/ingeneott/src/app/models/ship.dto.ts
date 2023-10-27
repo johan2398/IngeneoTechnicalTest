@@ -15,6 +15,7 @@ export class ShipDTO{
     warehouse: WarehouseDTO;
     discount: DiscountDTO;
     state: ShipState;
+    shippingPriceWithDiscount: number;
 }
 
 export enum ShipState{

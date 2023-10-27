@@ -34,4 +34,5 @@ public class ShipDTO {
 	private Warehouse warehouse;
 	private Discount discount;
 	private ShipState state;
+	private float shippingPriceWithDiscount;
 }

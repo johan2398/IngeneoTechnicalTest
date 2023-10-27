@@ -23,6 +23,7 @@ public class UserDTOConverter {
 		userDTO.setUserName(user.getUserName());
 		userDTO.setPassword(user.getPassword());
 		userDTO.setEmail(user.getEmail());
+		userDTO.setName(user.getName());
 		return userDTO;
 	}
 	
@@ -32,6 +33,7 @@ public class UserDTOConverter {
 		user.setUserName(userDTO.getUserName());
 		user.setPassword(userDTO.getPassword());
 		user.setEmail(userDTO.getEmail());
+		user.setName(userDTO.getName());
 		return user;
 	}
 }

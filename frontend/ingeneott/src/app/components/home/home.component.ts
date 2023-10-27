@@ -75,6 +75,8 @@ export class HomeComponent implements OnInit {
       productType: ['', Validators.required],
       productQuantity: ['', Validators.required],
       warehouseType: ['', Validators.required],
+      clientName: ['', Validators.required],
+      docId: ['', Validators.required],
     });
   }
 
@@ -188,12 +190,17 @@ export class HomeComponent implements OnInit {
     this.shipDTO.product.type = this.searchForm.get('productType')?.value;
     this.shipDTO.warehouse = new WarehouseDTO();
     this.shipDTO.warehouse.type = this.searchForm.get('warehouseType')?.value;
+    this.shipDTO.client = new ClientDTO();
+    this.shipDTO.client.name = this.searchForm.get('clientName')?.value;
+    this.shipDTO.client.identification = this.searchForm.get('docId')?.value;
     console.log(this.shipDTO);
 
     this.shipService.createShip(this.shipDTO)
       .subscribe(
         resp => {
           console.log(this.ships)
+          window.alert(`Número de guía generado: ${resp.guideNumber} al cliente con documento: ${resp.client.identification}`);
+
         },
         error => {
         }

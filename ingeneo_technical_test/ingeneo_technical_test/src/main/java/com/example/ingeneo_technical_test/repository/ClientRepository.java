@@ -10,4 +10,5 @@ import com.example.ingeneo_technical_test.entity.Client;
  */
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+	public Client findByIdentification(String identification);
 }

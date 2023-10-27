@@ -45,6 +45,7 @@ public class Ship {
 	@Column(name="delivery_date")
 	private Date deliveryDate;
 	
+	/**Land logistic -> 20000 & maritime logistic -> 50000*/
 	@Column(name="shipping_price")
 	private float shippingPrice;
 	
@@ -65,4 +66,7 @@ public class Ship {
 	private Discount discount;
 	
 	private ShipState state;
+	
+	@Column(name="shipping_price_with_discount")
+	private float shippingPriceWithDiscount;
 }
