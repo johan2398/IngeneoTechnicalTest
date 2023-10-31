@@ -48,8 +48,10 @@ public class WebSecurityConfig {
 		
 		
 		return http
+				.cors().and()
 				.csrf().disable()
 				.authorizeRequests()
+				.antMatchers("/login").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -75,17 +77,19 @@ public class WebSecurityConfig {
 	PasswordEncoder passwodEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
 	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*"); // Permitir solicitudes desde cualquier origen
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+	public CorsConfigurationSource corsConfigurationSource() {
+	    CorsConfiguration configuration = new CorsConfiguration();
+	    configuration.addAllowedOrigin("http://localhost:4200");
+	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+	    configuration.setAllowedHeaders(Arrays.asList("*")); // Allow all headers
+	    configuration.setAllowCredentials(true);
+
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+	    return source;
+	}
+
 	
 }
 

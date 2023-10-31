@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ClientDTO } from 'src/app/models/client.dto';
 import { ClientService } from 'src/app/services/client/client.service';
+import { tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import { ClientService } from 'src/app/services/client/client.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: string = "";
+  email: string = "";
   password: string = "";
   client!: ClientDTO
 
@@ -18,16 +20,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  doLogin(){
-    if (this.username && this.password) {
-      this.service.login(this.username, this.password)
-      .subscribe((client) => {
-        this.client = client;
-        this.router.navigate(["/home"])
-      }, (error) => {console.error('Error getting user session:', error);})
-    }
-    else {
-      console.log('Please complete the username and password fields')
+  doLogin() {
+    if (this.email && this.password) {
+      this.service.login(this.email, this.password)
+        .pipe(
+          tap(resp => {
+            console.log(resp);
+            localStorage.setItem("token", resp.token);
+            this.client = resp;
+            this.router.navigate(['/home']);
+          })
+        )
+        .subscribe(
+          response => {
+            // Aquí puedes manejar la respuesta si es necesario
+          },
+          error => {
+            console.error('Error getting user session:', error);
+          }
+        );
+    } else {
+      console.log('Please complete the email and password fields');
     }
   }
 

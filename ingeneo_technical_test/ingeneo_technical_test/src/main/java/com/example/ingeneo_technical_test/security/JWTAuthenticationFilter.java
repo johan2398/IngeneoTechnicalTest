@@ -16,6 +16,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -52,9 +55,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
 		String token = TokenUtils.createToken(userDetails.getName(), userDetails.getUsername());
 		
+		 // Agregar el token al cuerpo de la respuesta
+	    Map<String, Object> responseBody = new HashMap<>();
+	    responseBody.put("token", token);
+
+	    // Convertir el cuerpo de respuesta a formato JSON
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    String responseBodyJson = objectMapper.writeValueAsString(responseBody);
+
+	    // Establecer el cuerpo de la respuesta y los encabezados necesarios
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
 		response.addHeader("Authorization", "Bearer " + token);
+		response.getWriter().write(responseBodyJson);
 		response.getWriter().flush();
-		
 		super.successfulAuthentication(request, response, chain, authResult);
 	}
 

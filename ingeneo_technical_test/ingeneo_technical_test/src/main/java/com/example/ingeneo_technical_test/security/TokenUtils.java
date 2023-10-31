@@ -39,6 +39,7 @@ public class TokenUtils {
 				.addClaims(extra)
 				.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
 				.compact();
+		
 	}
 	
 	public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
