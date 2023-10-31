@@ -10,25 +10,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.ingeneo_technical_test.enumerations.ProductType;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Entity from table "PRODUCT"
  * @author Johan Casagua
  */
 @Entity
-@Table(name = "PRODUCT")
-@Data @Builder
+@Table(name = "product")
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
+	private String name;
+	
+	private int quantity;
+	
 	private String description;
 	
-	private Long type;
+	private float price;
+	
+	private ProductType type;
 	
 	@Column(name="creation_date")
 	private Date creationDate;

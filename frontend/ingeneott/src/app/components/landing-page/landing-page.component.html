@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="landing-page.component.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="#">Ingeneo Technical Test</a>
+        </div>
+        <div class="navbar-links">
+            <a [routerLink]="['/login']">Log in</a>
+        </div>
+    </nav>
+    <div class="main-content">
+        <div class="left-content">
+            <h1 class="title">Make your shipments eficiently</h1>
+            <p class="para">Streamline recruitment processes with this wonderful tool</p>
+            <button class="custom-button" [routerLink]="['/login']">Shipping</button>
+        </div>
+        <div class="right-content">
+            <img src="https://res.cloudinary.com/djyezlvbz/image/upload/v1696108450/Macbook_Pro_gy4pgz.png"
+                alt="Imagen PC">
+        </div>
+    </div>
+</body>
+</html>

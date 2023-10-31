@@ -1,0 +1,126 @@
+html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    color: white;
+    padding: 10px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo a {
+    color: white;
+    /* margin-left: 20px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+  }
+  
+  .navbar-links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
+  body {
+    height: 100vh;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right,
+        #9664bb 0%,
+        #6f37a4 20%,
+        #95289b 40%,
+        #fe7098 60%,
+        #f973d2 80%);
+    background-size: 200% 200%;
+    animation: back_mov 5s linear infinite alternate;
+  }
+  
+  @keyframes back_mov {
+    from {
+      background-position: 0 0;
+    }
+  
+    to {
+      background-position: 100% 100%;
+    }
+  }
+  
+  .main-content {
+    display: flex;
+    /* flex-direction: column; */
+    /* flex-direction: row; */
+    align-items: center;
+    padding: 80px;
+    justify-content: space-around;
+  }
+  
+  .left-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .right-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .title {
+    color: white;
+    padding-bottom: 20px;
+  }
+  
+  .para {
+    color: white;
+    opacity: 0.4;
+    padding-bottom: 30px;
+  }
+  
+  .custom-button {
+    background: linear-gradient(to right, #8002f5, #8002f5);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+  }
+  
+  /* Responsive*/
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-links {
+      margin-top: 10px;
+    }
+  
+    .main-content {
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+  
+    .left-content,
+    .right-content {
+      padding: 20px 0;
+      text-align: center;
+    }
+  
+    .custom-button {
+      width: 100%;
+    }
+  }
