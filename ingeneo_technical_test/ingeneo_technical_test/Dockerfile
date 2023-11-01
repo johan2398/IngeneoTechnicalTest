@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:11-jre-slim-buster
 
 # Copy the built JAR file from the build stage
-COPY --from=builder ./ingeneo_technical_test/ingeneo_technical_test/target/*.jar ingeneo_technical_test.jar
+COPY --from=builder ./ingeneo_technical_test/ingeneo_technical_test/*.jar ingeneo_technical_test.jar
 
 # Expose the port that the application will use
 EXPOSE 8080
