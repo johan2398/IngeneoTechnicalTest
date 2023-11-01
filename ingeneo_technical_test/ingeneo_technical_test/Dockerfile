@@ -4,10 +4,6 @@ FROM maven:3.8.4-openjdk-11 AS build
 # Create a working directory
 WORKDIR /app
 
-# Copy necessary files
-COPY pom.xml .
-COPY src ./src
-
 # Build the project using Maven
 RUN mvn clean package -DskipTests
 
