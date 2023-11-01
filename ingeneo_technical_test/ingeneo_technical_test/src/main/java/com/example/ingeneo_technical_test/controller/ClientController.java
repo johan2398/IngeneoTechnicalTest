@@ -19,6 +19,10 @@ import com.example.ingeneo_technical_test.entity.dto.ClientDTO;
 import com.example.ingeneo_technical_test.entity.dto.ShipDTO;
 import com.example.ingeneo_technical_test.service.ClientService;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+
+
 /**
  * @author Johan Casagua
  */
@@ -36,7 +40,9 @@ public class ClientController {
 		if(clients.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		}
-		return ResponseEntity.ok(clients);
+		HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(clients, headers, HttpStatus.OK);
 	}
 	@PostMapping
     public ResponseEntity<ClientDTO> createClient(@RequestBody ClientDTO clientDTO) {
