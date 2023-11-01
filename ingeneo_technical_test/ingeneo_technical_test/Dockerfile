@@ -1,7 +1,7 @@
 # Use a base image with JDK 11 and Maven
 FROM maven:3.8.4-openjdk-11 AS builder
 
-COPY ./src src/
+COPY ./ingeneo_technical_test/ingeneo_technical_test/src src/
 COPY ./ingeneo_technical_test/ingeneo_technical_test/pom.xml pom.xml
 
 # Build the project using Maven
@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:11-jre-slim-buster
 
 # Copy the built JAR file from the build stage
-COPY --from=builder target/*.jar ingeneo_technical_test.jar
+COPY --from=builder ./ingeneo_technical_test/ingeneo_technical_test/target/*.jar ingeneo_technical_test.jar
 
 # Expose the port that the application will use
 EXPOSE 8080
