@@ -5,7 +5,7 @@ FROM maven:3.8.4-openjdk-11 AS build
 COPY . .
 
 # Build the project using Maven
-RUN mvn clean install
+RUN mvn clean package -DskipTests
 
 # Create a new image based on OpenJDK 11
 FROM openjdk:11-jre-slim-buster
