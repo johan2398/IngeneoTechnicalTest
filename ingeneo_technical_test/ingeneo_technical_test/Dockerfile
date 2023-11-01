@@ -2,7 +2,7 @@
 FROM maven:3.8.4-openjdk-11 AS builder
 
 COPY ./src src/
-COPY ./pom.xml pom.xml
+COPY ./ingeneo_technical_test/ingeneo_technical_test/pom.xml pom.xml
 
 # Build the project using Maven
 RUN mvn clean package -DskipTests
