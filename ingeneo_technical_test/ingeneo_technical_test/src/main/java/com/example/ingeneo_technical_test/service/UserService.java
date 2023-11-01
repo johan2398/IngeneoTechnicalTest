@@ -13,4 +13,5 @@ public interface UserService {
 
 	public UserDTO findByUsernameAndPassword(String userName, String password);
 
+	public UserDTO createUser(UserDTO userDTO);
 }

@@ -44,4 +44,9 @@ export class ClientService {
     return this.http.post<any>(`${this.API_CLIENT}`, clientDTO, { headers });
   }
 
+  public createUser(userDTO: UserDTO): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(`${this.API_CLIENT.replace("/clients", "/users")}`, userDTO, { headers });
+  }
+
 }
