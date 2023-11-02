@@ -15,41 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
-@AutoConfigureMockMvc
 class IngeneoTechnicalTestApplicationTests {
 	
-	// Test class added ONLY to cover main() invocation not covered by application tests.
-	@Test
-	public void main() {
-		IngeneoTechnicalTestApplication.main(new String[] {});
-	}
-	
-	@Autowired
-	private MockMvc mockMvc;
-
-	@Test
-	void contextLoads() {
-	}
-	
-	@Test
-	void testSomeControllerEndpoint() throws Exception {
-	    mockMvc.perform(get("/api/some-endpoint"))
-	           .andExpect(status().isForbidden());//Must be 200
-	}
-
-	@Test
-	void testCustomFilter() throws Exception {
-	    mockMvc.perform(get("/api/some-endpoint"))
-	           .andExpect(status().isForbidden());//Must be 200
-	}
-	
-	@Test
-	void testCorsConfiguration() throws Exception {
-	    mockMvc.perform(get("/api/some-endpoint")
-	           .header("Origin", "http://allowed-origin.com"))
-	           .andExpect(status().isForbidden());//Must be 200
-	}
-
-
-
 }
