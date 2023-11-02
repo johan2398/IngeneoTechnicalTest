@@ -20,7 +20,7 @@ import com.example.ingeneo_technical_test.repository.UserRepository;
 public class UserDetailServiceImpl implements UserDetailsService{
 
 	@Autowired
-	UserRepository userRepository;
+	public UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

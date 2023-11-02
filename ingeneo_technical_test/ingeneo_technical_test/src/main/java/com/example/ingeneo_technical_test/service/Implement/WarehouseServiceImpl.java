@@ -35,7 +35,6 @@ public class WarehouseServiceImpl implements WarehouseService{
 
 	@Override
 	public WarehouseDTO createWarehouse(WarehouseDTO warehouseDTO) {
-		//Hacer la validación de placaaaaaaaaaaaaaaaaa
 		Warehouse warehouse = WarehouseDTOConverter.convertToEntity(warehouseDTO);
 		Warehouse savedWarehouse = warehouseRepository.save(warehouse);
 	    return WarehouseDTOConverter.convertToDTO(savedWarehouse);

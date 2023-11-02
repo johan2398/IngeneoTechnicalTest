@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.UUID;
 import java.util.Random;
-
+import java.security.SecureRandom;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +37,8 @@ import com.example.ingeneo_technical_test.service.ShipService;
 @Service
 public class ShipServiceImpl implements ShipService{
 
+	private static SecureRandom random = new SecureRandom();
+	
 	@Autowired
 	ShipRepository shipRepository;
 	
@@ -45,9 +47,6 @@ public class ShipServiceImpl implements ShipService{
 	
 	@Autowired
 	ClientService clientService;
-	
-//	@Autowired
-	
 	
 	@Override
 	public List<ShipDTO> listAllShips() {
@@ -186,7 +185,6 @@ public class ShipServiceImpl implements ShipService{
     public static String generateRandomLetters() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder();
-        Random random = new Random();
 
         // Generar 3 random letters
         for (int i = 0; i < 3; i++) {

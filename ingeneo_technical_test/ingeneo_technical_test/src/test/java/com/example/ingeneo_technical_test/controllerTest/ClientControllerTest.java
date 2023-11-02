@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @WebMvcTest(ClientController.class)
-public class ClientControllerTest {
+class ClientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,7 +38,7 @@ public class ClientControllerTest {
     private ClientService clientService;
 
     @Test
-    public void testListClientsWhenEmpty() throws Exception {
+    void testListClientsWhenEmpty() throws Exception {
         when(clientService.listAllClients()).thenReturn(new ArrayList<>());
 
         mockMvc.perform(get("/clients"))
@@ -48,7 +48,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    public void testListClientsWithClients() throws Exception {
+    void testListClientsWithClients() throws Exception {
         List<ClientDTO> clients = new ArrayList<>();
         clients.add(new ClientDTO(/* client data */));
         when(clientService.listAllClients()).thenReturn(clients);
@@ -59,7 +59,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    public void testCreateClientWithValidInput() throws Exception {
+    void testCreateClientWithValidInput() throws Exception {
         ClientDTO inputClient = new ClientDTO(/* client data */);
         ClientDTO createdClient = new ClientDTO(/* created client data */);
         
@@ -74,7 +74,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    public void testCreateClientWithInvalidInput() throws Exception {
+    void testCreateClientWithInvalidInput() throws Exception {
         when(clientService.createClient(null)).thenReturn(null);
 
         mockMvc.perform(post("/clients")
