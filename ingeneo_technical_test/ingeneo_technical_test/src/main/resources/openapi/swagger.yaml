@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Tu API
+  description: Descripción de tu API
+  version: 1.0.0
+paths:
+  /auth/login:
+    post:
+      summary: Request de login para obtener un Token
+      operationId: loginUser
+      requestBody:
+        description: Credenciales de usuario para login
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Token de autorización obtenido correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Credenciales incorrectas
+  /clients:
+    get:
+      summary: Obtener lista de clientes
+      operationId: getClients
+      responses:
+        '200':
+          description: Lista de clientes obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+  /clients/{clientId}:
+    get:
+      summary: Obtener detalles de un cliente por ID
+      operationId: getClientById
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles del cliente obtenidos correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '404':
+          description: Cliente no encontrado
+  # Definir rutas y operaciones similares para las demás entidades (Warehouse, Ships, User, Product, etc.)
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      # Definir otras propiedades del cliente aquí
