@@ -88,16 +88,6 @@ public class ShipServiceImpl implements ShipService{
          * 5% for land and 3% for maritime
          * Save both prices
          */
-//        if(ShipDTO.getProduct().getQuantity() > 10) { 
-//        	float price = ShipDTO.getShippingPrice();
-//        	if(ShipDTO.getWarehouse().getType() == WarehouseType.STORE) {
-//        		float discount = (float)(price - (price * 0.05));
-//        		ShipDTO.setShippingPriceWithDiscount(discount);
-//        	} else if(ShipDTO.getWarehouse().getType() == WarehouseType.PORT){
-//        		float discount = (float)(price - (price * 0.03));
-//        		ShipDTO.setShippingPriceWithDiscount(discount);
-//        	}
-//        }
         if(ShipDTO.getProduct().getQuantity() > 10) { 
             float originalPrice = ShipDTO.getShippingPrice();
             float discountRate = 0.05f; // Por defecto, se aplica un descuento del 5%
@@ -135,20 +125,14 @@ public class ShipServiceImpl implements ShipService{
 		ShipDTO.setDeliveryDate(deliveryDateAsDate);
         
 		/**
-		 * Search client if doesn't exist creating
+		 * Search client if doesn't exist create him
 		 */
 		var clientSearched = clientRepository.findByIdentification(ShipDTO.getClient().getIdentification());
-		if(clientSearched != null) { //If exist
-			var clientConvertDTO = ClientDTOConverter.convertToDTO(clientSearched);
-			ShipDTO.getClient().setId(clientConvertDTO.getId());
-			ShipDTO.getClient().setName(clientConvertDTO.getName());
-			ShipDTO.getClient().setLastName(clientConvertDTO.getLastName());
-			ShipDTO.getClient().setEmail(clientConvertDTO.getEmail());
-			ShipDTO.getClient().setAddress(clientConvertDTO.getAddress());
-			ShipDTO.getClient().setState(clientConvertDTO.getState());
-			ShipDTO.getClient().setIdentification(clientConvertDTO.getIdentification());
-		} else { //If doesn't exist creating
-			clientService.createClient(ClientDTOConverter.convertToDTO(ShipDTO.getClient()));
+		if(clientSearched == null) { //If doesn't exist creating
+			ShipDTO.getClient().setName(ShipDTO.getClient().getName());
+			ShipDTO.getClient().setIdentification(ShipDTO.getClient().getIdentification());
+		} else { //If exist get all properties
+			ShipDTO.setClient(clientSearched);
 		}
 		
 		/**

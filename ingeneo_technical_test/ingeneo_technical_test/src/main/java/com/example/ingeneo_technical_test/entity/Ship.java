@@ -50,10 +50,10 @@ public class Ship {
 	private float shippingPrice;
 	
 	/**(10-digit alphanumeric unique number)*/
-	@Column(name="guide_number")
+	@Column(name="guide_number",unique = true)
 	private String guideNumber;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_client")
 	private Client client;
 	
