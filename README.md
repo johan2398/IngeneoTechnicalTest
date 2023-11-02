@@ -15,7 +15,7 @@ En este proyecto, se siguieron las siguientes buenas prácticas:
 
 - **Principio SOLID:** Se aplicaron los principios SOLID para mantener un código modular y fácil de mantener.
 - **Pruebas Unitarias:** Se escribieron pruebas unitarias para garantizar la calidad y confiabilidad del código.
-- **Documentación:** Se documentó el código con Javadoc para el backend y siguiendo estándares con un estilo de codificación consistente para mejorar la legibilidad. Además de exponer los servicios en Swagger.
+- **Documentación:** Se documentó el código con Javadoc para el backend y siguiendo estándares con un estilo de codificación consistente para mejorar la legibilidad. Además de documentar los servicios con Swagger.
 - **Seguridad:** Se implementó la seguridad de los servicios con Token tipo Bearer. Además las contraseñas de los usuarios se encriptaron con un Hash.
 
 ## Justificación de Tecnologías y Patrones de Diseño
@@ -38,6 +38,7 @@ En este proyecto, se siguieron las siguientes buenas prácticas:
 - **Base de Datos** PostgreSQL
 - **Java en versión 11 o superior**
 - **npm Instalado**
+- **Maven instalado**
 
 Si tiene pgAdmin u otro cliente de PostgreSQL crear una base datos con el nombre **INGENEO_TECHNICAL_TEST**
 El usuario y la password de PostgreSQL debe ser:

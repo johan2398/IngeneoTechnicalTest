@@ -106,8 +106,7 @@ export class HomeComponent implements OnInit {
   onScroll(event: Event): void {
     const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
     const max = document.documentElement.scrollHeight;
-
-    if (pos > max - 100 && !this.loading) {
+    if (pos > max - 300) {
       this.loadProducts();
       this.loadClients();
     }
@@ -152,6 +151,7 @@ export class HomeComponent implements OnInit {
     this.productService.createProduct(this.productDTO)
       .subscribe(
         resp => {
+          this.loadProducts();
         },
         err => {
         }
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
     this.clientService.createClient(this.clientDTO)
       .subscribe(
         resp => {
-
+          this.loadClients()
         },
         err => {
 
@@ -175,7 +175,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         resp => {
           this.ships = resp;
-          console.log(this.ships)
         },
         error => {
           this.ships = [];
@@ -184,27 +183,30 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmitShipment(): void {
-    this.shipDTO.product = new ProductDTO();
-    this.shipDTO.product.name = this.searchForm.get('productName')?.value;
-    this.shipDTO.product.quantity = this.searchForm.get('productQuantity')?.value;
-    this.shipDTO.product.type = this.searchForm.get('productType')?.value;
-    this.shipDTO.warehouse = new WarehouseDTO();
-    this.shipDTO.warehouse.type = this.searchForm.get('warehouseType')?.value;
-    this.shipDTO.client = new ClientDTO();
-    this.shipDTO.client.name = this.searchForm.get('clientName')?.value;
-    this.shipDTO.client.identification = this.searchForm.get('docId')?.value;
-    console.log(this.shipDTO);
+    if (this.searchForm.get('clientName') && this.searchForm.get('docId')) {
+      this.shipDTO.product = new ProductDTO();
+      this.shipDTO.product.name = this.searchForm.get('productName')?.value;
+      this.shipDTO.product.quantity = this.searchForm.get('productQuantity')?.value;
+      this.shipDTO.product.type = this.searchForm.get('productType')?.value;
+      this.shipDTO.warehouse = new WarehouseDTO();
+      this.shipDTO.warehouse.type = this.searchForm.get('warehouseType')?.value;
+      this.shipDTO.client = new ClientDTO();
+      this.shipDTO.client.name = this.searchForm.get('clientName')?.value;
+      this.shipDTO.client.identification = this.searchForm.get('docId')?.value;
 
-    this.shipService.createShip(this.shipDTO)
-      .subscribe(
-        resp => {
-          console.log(this.ships)
-          window.alert(`Número de guía generado: ${resp.guideNumber} al cliente con documento: ${resp.client.identification}`);
+      this.shipService.createShip(this.shipDTO)
+        .subscribe(
+          resp => {
+            window.alert(`Número de guía generado: ${resp.guideNumber} al cliente con documento: ${resp.client.identification}`);
 
-        },
-        error => {
-        }
-      );
+          },
+          error => {
+          }
+        );
+
+    } else {
+      console.log('Please complete the name and doc itdentifiaction fields');
+    }
   }
 }
 
